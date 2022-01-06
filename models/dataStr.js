@@ -1,27 +1,22 @@
 const mongoose = require('mongoose')
-const Validator = require('validator')
+const validator = require('validator')
 
-const firstSchema=new mongoose.Schema({
-  name:{
-    type:String,
-    required:true,
-    trim:true,
-    minLength:2,
-    maxLength:100
+const firstSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 2,
   },
-  email:{
-    type:String,
-    required:true,
-    validate(value){
-      if(Validator.isEmail(value)){
-        console.log("Email Is Valid ");
-      }else {
-        throw new Error("Invalid email")
+  email: {
+    type: String,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error('Invalid Email')
       }
-    }
-  }
+    },
+  },
 })
 
-const data = new mongoose.model('data',firstSchema)
+const data = new mongoose.model('data', firstSchema)
 
-module.exports = data  
+module.exports = data
