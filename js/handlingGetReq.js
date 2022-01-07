@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 8080
+const port = 3000
 const data = require('../models/dataStr.js')
 require('../db/connection1.js')
 
@@ -13,11 +13,30 @@ app.use(express.json())
 app.get('/', async (req, res) => {
   try {
     savedData = await data.find(req.body)
+    // data.find(req.params.id)
     res.send(savedData)
     console.log(savedData)
   } catch (error) {
     res.send(error)
     console.log(error)
+  }
+})
+
+// serving single data
+app.get('/sin/:name', async (req, res) => {
+  try {
+    const name = req.params.name
+    var sinData = await data.findById({ _id: name })
+    if (sinData) {
+      console.log(sinData)
+      res.send(sinData)
+    } else {
+      res.status(400).send()
+    }
+    // console.log(req.params.name)
+    // res.send(req.params.name)
+  } catch (error) {
+    res.send(error)
   }
 })
 
