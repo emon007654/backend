@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.get('/', async (req, res) => {
   try {
-    savedData = await data.find(req.body)
+    savedData = await data.find()
     // data.find(req.params.id)
     res.send(savedData)
     console.log(savedData)

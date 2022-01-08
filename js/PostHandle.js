@@ -11,10 +11,11 @@ app.get('/home', (req, res) => {
 
 app.post('/home', async (req, res) => {
   userData = new data(req.body)
+  console.log(req.body)
 
   try {
     var result = await userData.save()
-    console.log(result)
+    // console.log(result)
     res.send(result)
   } catch (error) {
     console.log(error)

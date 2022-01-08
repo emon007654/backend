@@ -19,7 +19,7 @@ app.get('/main/:name', async (req, res) => {
     console.log(error)
   }
 })
-
+app.patch()
 app.listen(port, () => {
   console.log(`This app running on http://localhost:${port}`)
 })
